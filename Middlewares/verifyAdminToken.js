@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
 
-const verifyModeratorToken = (req, res, next) => {
+const verifyAdminToken = (req, res, next) => {
     if (req.cookies.Authorization) {
         const token = req.cookies.Authorization.split(" ")[1];
         // console.log("token: ", token)
           
         jwt.verify(token, process.env.JWT_SECRET, (error, data) => {
-            if (error || (data.role !== 'moderator' && data.role !== 'admin')) {
+            if (error || data.role !== 'admin') {
                 res.status(401).json({message: "Unauthorized."});
                 return;      
             }
@@ -24,4 +24,4 @@ const verifyModeratorToken = (req, res, next) => {
     }
 };
 
-export default verifyModeratorToken;
+export default verifyAdminToken;

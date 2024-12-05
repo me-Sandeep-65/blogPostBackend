@@ -31,7 +31,7 @@ signupRouter.post('/', async (req, res)=>{
         console.log(userObject)
         
 
-        const token = jwt.sign({ user: userObject }, process.env.JWT_SECRET);
+        const token = jwt.sign(userObject, process.env.JWT_SECRET);
         res.cookie("Authorization", "Bearer " + token, {
             httpOnly: true, 
             Secure: process.env.NODE_ENV === 'production', 

@@ -3,6 +3,7 @@ import passport from "./Config/passport-config.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import verifyModeratorToken from "./Middlewares/verifyModeratorToken.js";
+import verifyAdminToken from "./Middlewares/verifyAdminToken.js";
 
 
 // route import
@@ -10,6 +11,7 @@ import loginRouter from './Routes/login.js'
 import signupRouter from './Routes/signup.js'
 import userRouter from './Routes/userRoutes.js'
 import moderatorRouter from "./Routes/moderatorRoutes.js";
+import adminRouter from "./Routes/adminRoutes.js";
 
 
 
@@ -36,6 +38,7 @@ app.use(cors(corsOptions));
 app.use("/api/v1/login", loginRouter)
 app.use("/api/v1/signup", signupRouter)
 app.use("/api/v1/moderator", verifyModeratorToken, moderatorRouter);
+app.use("/api/v1/admin", verifyAdminToken, adminRouter);
 app.use("/api/v1", userRouter)
 app.get('/', (req,res) => {
     res.send('hello world!');
