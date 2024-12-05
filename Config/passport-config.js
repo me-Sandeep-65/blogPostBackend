@@ -82,7 +82,7 @@ passport.use(new GoogleStrategy({
             });
 
 
-            done(null, { user: {userId:user._id, image:user.image, name:user.name, email: user.mail.email, mobile:user.mobile, role:user.role}}); // Return user object            
+            done(null, {userId:user._id, image:user.image, name:user.name, email: user.mail.email, mobile:user.mobile, role:user.role}); // Return user object            
         }
         else{ 
             if(user.google?.id !== profile.id){
@@ -99,7 +99,7 @@ passport.use(new GoogleStrategy({
                 );
             }
 
-            return done(null, { user: {userId:user._id, image:user.image, name:user.name, email:user.mail.email, mobile:user.mobile, role:user.role}});
+            return done(null, {userId:user._id, image:user.image, name:user.name, email:user.mail.email, mobile:user.mobile, role:user.role});
         }
         
     } catch (error) {

@@ -52,6 +52,7 @@ loginRouter.get('/auth/google/callback', passport.authenticate('google', { sessi
         //     });
         //     res.end();
         // }
+        // console.log("creating token of ")
 
         // console.log(req.user);
 

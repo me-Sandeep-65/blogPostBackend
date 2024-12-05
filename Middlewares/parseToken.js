@@ -12,7 +12,8 @@ const parseToken = (req, res, next) => {
                 }
                 next();      
             }
-            // console.log(user);
+            // console.log("parsed token is")
+            // console.log(data);
             req.user = data;
         });
           
