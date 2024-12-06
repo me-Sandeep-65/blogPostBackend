@@ -9,7 +9,7 @@ This project is a web application built to manage user roles and permissions usi
 #### Demo Link:
 You can try the live demo of the application here:
 
-[Demo Link](https://your-demo-link.com)
+[Demo Link](https://blog-post-frontend-theta.vercel.app/)
 
 
 Table of Contents
