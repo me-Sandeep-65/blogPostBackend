@@ -31,7 +31,7 @@ loginRouter.post('/', passport.authenticate('local', { session: false }), async 
         res.status(200).json(req.user);
 
     } else {
-        console.log(req.error)
+        // console.log(req.error)
         res.status(500).json({
             status:false,
             error: "Internal Server Error."
@@ -44,19 +44,7 @@ loginRouter.post('/', passport.authenticate('local', { session: false }), async 
 loginRouter.get('/auth/google', passport.authenticate('google', { session: false, scope: ['profile', 'email', 'openid'] })) //profile, email, openid
 
 loginRouter.get('/auth/google/callback', passport.authenticate('google', { session: false}), (req, res)=>{
-    if (!req.error) {
-        // if(!req.user){
-        //     res.status(401).json({
-        //         status: false,
-        //         user: req.info
-        //     });
-        //     res.end();
-        // }
-        // console.log("creating token of ")
-
-        // console.log(req.user);
-
-        
+    if (!req.error) {        
         const token = jwt.sign(req.user , process.env.JWT_SECRET);
         res.cookie("Authorization", "Bearer " + token, {
             httpOnly: true, 
@@ -64,22 +52,10 @@ loginRouter.get('/auth/google/callback', passport.authenticate('google', { sessi
             SameSite: 'None', 
         });
 
-        res.redirect("http://localhost:5173/login/success");
-
-        // const {image, name, mail, score, preferences} = req.user;
-        // res.status(200).json({
-        //     status: true,
-        //     user: {
-        //         image,
-        //         name,
-        //         mail,
-        //         score,
-        //         preferences,
-        //     },
-        // });        
+        res.redirect("http://localhost:5173/login/success");       
 
     } else {
-        console.log(req.error)
+        // console.log(req.error)
         res.redirect("/auth/google");
     }
 });

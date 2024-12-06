@@ -17,7 +17,7 @@ signupRouter.post('/', async (req, res)=>{
             mobile: req.body.mobile,
             password: req.body.password,
         });
-        console.log(newUser);
+        // console.log(newUser);
 
         const userObject = {
             userId: newUser._id,
@@ -28,7 +28,7 @@ signupRouter.post('/', async (req, res)=>{
             role: newUser.role,
         };
 
-        console.log(userObject)
+        // console.log(userObject)
         
 
         const token = jwt.sign(userObject, process.env.JWT_SECRET);
@@ -41,7 +41,7 @@ signupRouter.post('/', async (req, res)=>{
         res.status(201).json(userObject);
     }
     catch(error){
-        console.log(error)
+        // console.log(error)
         res.status(500).json({data:{
             success: false,
             error: "Failed to create user."

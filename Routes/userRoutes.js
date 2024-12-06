@@ -52,20 +52,17 @@ userRouter.get('/my-posts', parseToken, async(req, res) => {
 userRouter.post('/new-post', parseToken, async(req, res) => {
     try {
         if(req.err || !req.user.userId || !req.body.subject || !req.body.about){
-            res.status(200).json({status: false, newPost: null});
+            res.status(200).json(null);
             return;
         }
-
-        console.log(req.user.userId);
-        console.log("user user")
     
         const newUser = await User.findById(req.user.userId, {'image':1, 'name':1, 'role': 1});
         if(newUser.role === 'blocked'){
-            res.status(200).json({status: false, newPost: null});
+            res.status(200).json(null);
             return;
         }
 
-        console.log(newUser);
+        // console.log(newUser);
     
         const newPost = await new Post({
             userId: newUser._id,
@@ -74,8 +71,9 @@ userRouter.post('/new-post', parseToken, async(req, res) => {
             
         }).save();
     
-        res.status(201).json({status:true, newPost:{about: newPost.title, subject: newPost.content, postId: newPost._id, userName: newUser.name, image:newUser.image}});    
+        res.status(201).json({title:newPost.title, content:newPost.content, _id:newPost._id, userId:{_id:newUser._id, name:newUser.name, image:newUser.image}});    
     } catch (error) {
+        // console.log(error)
         res.status(500).json({message: "Internal Server Error."})
     }
 });
@@ -83,19 +81,19 @@ userRouter.post('/new-post', parseToken, async(req, res) => {
 userRouter.post('/delete-post', parseToken, async(req, res) => {
     try {
         if(req.err || !req.user || !req.body.postId){
-            res.status(200).json({status: false});
+            res.status(200).json(null);
             return;
         }
 
         const post = await Post.findById(req.body.postId, {'userId':1});
 
         if(post && post.userId == req.user.userId){
-            await Post.findByIdAndDelete(req.body.postId);
-            res.status(201).json({status: true});
+            const newPost = await Post.findByIdAndDelete(req.body.postId);
+            res.status(201).json(newPost._id);
             return;
         }
 
-        res.status(201).json({status:false});
+        res.status(201).json(null);
     } catch (error) {
         res.status(500).json({message: "Internal Server Error."})
     }
