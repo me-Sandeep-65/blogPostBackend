@@ -9,7 +9,9 @@ This project is a web application built to manage user roles and permissions usi
 #### Demo Link:
 You can try the live demo of the application here:
 
-[Demo Link](https://blog-post-frontend-theta.vercel.app/)
+[Demo Link (Frontend)](https://blog-post-frontend-theta.vercel.app/)
+
+[Demo Link (Backend)](https://blogpostbackend-gn6x.onrender.com)
 
 
 Table of Contents
@@ -28,7 +30,7 @@ Table of Contents
 *   [Installation and Setup](#installation-and-setup)
     - [Prerequisites](#prerequisites)
     - [Setup Instructructions](#setup-instructions)
-    - [Test and Setup](#test-and-setup)
+    - [Test the Setup](#test-the-setup)
     
 *   [Future Enhancements](#future-enhancement)
     
@@ -144,45 +146,88 @@ The frontend communicates with the backend through RESTful API calls, providing 
 
 This section outlines the prerequisites and the steps required to set up and run the project locally.
 
-
 ### **Prerequisites**
 
 Before setting up the project, make sure you have the following installed on your system:
 
-- **Node.js**
-- **npm**
-- **MongoDB**
-- **Git** (optional)
+- **Node.js** (Recommended version: 16.x or above)
+- **npm** (Node package manager)
+- **MongoDB** (either locally or MongoDB Atlas for cloud setup)
+- **Git** (optional, for cloning repositories)
 - **Google Cloud Project** (optional, for OAuth integration)
-
+    - If using Google OAuth, you'll need to set up credentials in the Google Cloud Console.
 
 ### **Setup Instructions**
 
 ##### Step 1: Backend Setup
-```
-https://github.com/me-Sandeep-65/blogPostBackend.git
-cd blogPostBackend
-npm install
 
-# Setup environment Variables
+1. Clone the backend repository:
+    ```bash
+    git clone https://github.com/me-Sandeep-65/blogPostBackend.git
+    cd blogPostBackend
+    ```
 
-npm run dev
-```
-##### Step 2: Frontend Setup
-```
-https://github.com/me-Sandeep-65/blogPostFrontend.git
-cd blogPostFrontend
-npm install
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-# Setup environment Variables
+3. **Setup environment variables**:  
+    Create a `.env` file in the root directory of the backend project. You may need to add configurations such as database URLs, JWT secret, and other environment-specific details.
+    
+    Example of `.env` file:
+    ```env
+    PORT=8000
+    MONGO_URI=mongodb://localhost:27017/blogPostDB
+    JWT_SECRET=your-secret-key
+    ```
 
-npm run dev
-```
+4. **Set up CORS**:  
+    configure CORS in `app.js` file:
+    ```javascript
+    app.use(cors({
+        origin: ['http://localhost:5173'], // replace with your frontend URL
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        credentials: true
+    }));
+    ```
+
+5. **Run the Backend**:
+    Once the environment variables and CORS are set up, run the backend server with:
+    ```bash
+    npm run dev
+    ```
+
+    This will start the server, usually on `http://localhost:8000`.
+
+
+
+#### Step 2: Frontend Setup
+1. Clone the frontend repository:
+    ```bash
+    git clone https://github.com/me-Sandeep-65/blogPostFrontend.git
+    cd blogPostFrontend
+    ```
+
+2. Install frontend dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Set up environment variables:
+    - Create a `.env` file in the root directory and add the following variables.
+    - Copy the contents of the `.env copy` file and paste it in `.env` file.
+    - Replace the placeholder values with your actual credentials.
+    
+4. Start the frontend development server:
+    ```bash
+    npm run dev
+    ```
+    The frontend will be available at `http://localhost:5173`.
+
 ### Test the Setup
-- Open your browser and visit http://localhost:5173/ (frontend) to ensure the frontend loads properly.
-- Check the backend at http://localhost:8000/ to confirm the server is running.
-
-
+- Open your browser and visit [http://localhost:5173](http://localhost:5173) to ensure the frontend loads properly.
+- Check the backend at [http://localhost:8000](http://localhost:8000) to confirm the server is running.
 
 
 ## Future Enhancements
