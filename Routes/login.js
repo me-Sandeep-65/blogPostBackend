@@ -23,8 +23,9 @@ loginRouter.post('/', passport.authenticate('local', { session: false }), async 
         
         const token = jwt.sign(req.user, process.env.JWT_SECRET);
         res.cookie("Authorization", "Bearer " + token, {
-            // httpOnly: true,    // due to overcome the statelessness of the 
-            Secure: process.env.NODE_ENV === 'production', 
+            // Secure: process.env.NODE_ENV === 'production', 
+            // httpOnly: true,                                         // due to overcome the statelessness of the 
+            Secure: true, 
             SameSite: 'None', 
         });
 
