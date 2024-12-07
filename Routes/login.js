@@ -52,7 +52,7 @@ loginRouter.get('/auth/google/callback', passport.authenticate('google', { sessi
             SameSite: 'None', 
         });
 
-        res.redirect("http://localhost:5173/login/success");       
+        res.redirect(`${process.env.FRONTEND_HOME_URL}/login/success`);       
 
     } else {
         // console.log(req.error)

@@ -1,11 +1,14 @@
 PORT = 8000
-CONNECTION_URI = "mongodb+srv://sandeep:helloji@cluster0.ufrq1vk.mongodb.net"
+CONNECTION_URI = ""
 DATABASE_NAME = "blogPost"
+
+FRONTEND_HOME_URL = ""
+BACKEND_HOME_URL = ""
 
 
 JWT_SECRET = "it,is,a,jwt,secret"
 
 
-GOOGLE_CLIENT_ID = "86617811282-cn9moju19g8glfvt0sgcgcj1e8mfqp3i.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "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"
-GOOGLE_CALLBACK_URL = "http://localhost:8000/api/v1/login/auth/google/callback"
+GOOGLE_CLIENT_ID = ""
+GOOGLE_CLIENT_SECRET = ""
+GOOGLE_CALLBACK_URL = `${process.env.BACKEND_HOME_URL}/api/v1/login/auth/google/callback`
