@@ -26,7 +26,7 @@ app.use(passport.initialize());
 
 //  cors setup
 const corsOptions = {
-    origin: ['https://blog-post-frontend-theta.vercel.app', 'http://localhost:5173'],
+    origin: [`${process.env.FRONTEND_HOME_URL}`, 'http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
