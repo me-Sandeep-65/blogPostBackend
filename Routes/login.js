@@ -47,7 +47,7 @@ loginRouter.get('/auth/google/callback', passport.authenticate('google', { sessi
     if (!req.error) {        
         const token = jwt.sign(req.user , process.env.JWT_SECRET);
         res.cookie("Authorization", "Bearer " + token, {
-            httpOnly: true, 
+            // httpOnly: true,    // due to overcome the statelessness of the 
             Secure: process.env.NODE_ENV === 'production', 
             SameSite: 'None', 
         });

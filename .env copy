@@ -11,4 +11,4 @@ JWT_SECRET = "it,is,a,jwt,secret"
 
 GOOGLE_CLIENT_ID = ""
 GOOGLE_CLIENT_SECRET = ""
-GOOGLE_CALLBACK_URL = `${process.env.BACKEND_HOME_URL}/api/v1/login/auth/google/callback`
+GOOGLE_CALLBACK_URL = ""

@@ -33,7 +33,7 @@ signupRouter.post('/', async (req, res)=>{
 
         const token = jwt.sign(userObject, process.env.JWT_SECRET);
         res.cookie("Authorization", "Bearer " + token, {
-            httpOnly: true, 
+            // httpOnly: true,  // due to overcome the statelessness of vercel
             Secure: process.env.NODE_ENV === 'production', 
             SameSite: 'None', 
         });
