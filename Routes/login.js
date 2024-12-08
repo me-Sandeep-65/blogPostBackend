@@ -9,10 +9,15 @@ const loginRouter = new Router();
 loginRouter.get('/', (req, res)=>{
     res.json({"name": "Sandeep"});
 })
-loginRouter.get('/logout', (req, res)=>{
-    res.clearCookie("Authorization");
+
+loginRouter.get('/logout', (req, res) => {
+    res.clearCookie("Authorization", {
+        httpOnly: false,
+        secure: true,
+        sameSite: 'None',
+    });
     res.json({"message": "Logged out successfully"});
-})
+});
 
 loginRouter.post('/', passport.authenticate('local', { session: false }), async (req, res)=>{
     if (!req.error) {
