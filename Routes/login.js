@@ -25,8 +25,8 @@ loginRouter.post('/', passport.authenticate('local', { session: false }), async 
         res.cookie("Authorization", "Bearer " + token, {
             // Secure: process.env.NODE_ENV === 'production', 
             httpOnly: true,                                         // due to overcome the statelessness of the 
-            Secure: true, 
-            SameSite: 'None', 
+            secure: true, 
+            sameSite: 'None', 
         });
 
         res.status(200).json({user:req.user, token});
