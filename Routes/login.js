@@ -24,12 +24,12 @@ loginRouter.post('/', passport.authenticate('local', { session: false }), async 
         const token = jwt.sign(req.user, process.env.JWT_SECRET);
         res.cookie("Authorization", "Bearer " + token, {
             // Secure: process.env.NODE_ENV === 'production', 
-            // httpOnly: true,                                         // due to overcome the statelessness of the 
+            httpOnly: false,                                         // due to overcome the statelessness of the 
             Secure: true, 
             SameSite: 'None', 
         });
 
-        res.status(200).json(req.user);
+        res.status(200).json({user:req.user, token});
 
     } else {
         // console.log(req.error)
